@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 سورپرایز تولد</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #081b50, #35106b, #111b49);
+}
+
+.container {
+    width: 92%;
+    max-width: 520px;
+    padding: 30px 22px;
+    margin: 25px 0;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 28px;
+    box-shadow: 0 0 45px #8a2be233;
+    backdrop-filter: blur(12px);
+    animation: appear 1s ease;
+}
+
+h1 {
+    font-size: clamp(28px, 7vw, 42px);
+    margin: 5px 0 12px;
+    color: #ffdc69;
+}
+
+.subtitle {
+    color: #dddafa;
+    margin-bottom: 22px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #a78bfa;
+    border-radius: 15px;
+    outline: none;
+    font: inherit;
+    font-size: 17px;
+    text-align: center;
+    background: #fff;
+    color: #251052;
+}
+
+input:focus {
+    border-color: #ffcf48;
+    box-shadow: 0 0 15px #ffcf4866;
+}
+
+button {
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+#nameBtn {
+    width: 100%;
+    margin-top: 12px;
+    background: linear-gradient(90deg, #246bff, #7c3aed);
+}
+
+#birthday {
+    display: none;
+    animation: appear .8s ease;
+}
+
+.name {
+    font-size: clamp(30px, 8vw, 45px);
+    font-weight: 900;
+    color: #ffdc69;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+.birthday-title {
+    font-size: clamp(30px, 8vw, 46px);
+    font-weight: 900;
+    line-height: 1.7;
+    background: linear-gradient(90deg, #ffdf63, #ff66c4, #7be7ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.cake {
+    font-size: 85px;
+    margin: 8px 0;
+    animation: bounce 1.5s infinite;
+}
+
+#surpriseBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #ec4899, #9333ea);
+    box-shadow: 0 0 22px #d946ef66;
+    margin-top: 12px;
+}
+
+#secret {
+    display: none;
+    margin-top: 22px;
+    padding: 18px 12px;
+    background: #ffffff12;
+    border-radius: 18px;
+    animation: appear .8s ease;
+}
+
+#secret h2 {
+    color: #ffdf63;
+}
+
+#secret p {
+    line-height: 2;
+}
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+footer {
+    margin-top: 24px;
+    color: #c7c4e9;
+    font-size: 12px;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+    <div style="font-size:45px">🎈 🎁 🎈</div>
+
+    <h1>اسمت چیه؟</h1>
+    <p class="subtitle">یه سورپرایز خوشگل برات دارم! 🤫</p>
+
+    <form id="nameForm">
+        <input
+            type="text"
+            id="username"
+            placeholder="مثلاً: ممد"
+            maxlength="40"
+            autocomplete="given-name"
+            required
+        >
+        <button type="submit" id="nameBtn">بگو ببینم! ✨</button>
+    </form>
+
+    <section id="birthday">
+        <p>اینم از قهرمان امروز! 👑</p>
+
+        <div class="name" id="displayName"></div>
+
+        <div class="birthday-title">تولدت مبارک! 🎉</div>
+
+        <div class="cake">🎂</div>
+
+        <p>امیدوارم امسال پر از خنده، عشق و اتفاق‌های قشنگ باشه! 💖</p>
+
+        <button id="surpriseBtn">🎁 سورپرایز منو باز کن!</button>
+
+        <div id="secret">
+            <h2>🎉 سوپرایز ویژه 🎉</h2>
+            <div style="font-size:65px">🎁💝🥳</div>
+            <p id="secretMessage"></p>
+            <p>✨ آرزو کن و شمع‌هاتو فوت کن! ✨</p>
+            <div style="font-size:60px">🕯️🎂🕯️</div>
+            <button id="againBtn" style="background:#2563eb">
+                🎊 دوباره جشن بگیریم!
+            </button>
+        </div>
+    </section>
+
+    <footer>ساخته شده با کلی عشق و کلی کیک 🍰</footer>
+</main>
+
+<script>
+const form = document.getElementById('nameForm');
+const input = document.getElementById('username');
+const birthday = document.getElementById('birthday');
+const displayName = document.getElementById('displayName');
+const secret = document.getElementById('secret');
+const secretMessage = document.getElementById('secretMessage');
+const surpriseBtn = document.getElementById('surpriseBtn');
+
+let currentName = '';
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    currentName = input.value.trim();
+
+    if (!currentName) {
+        input.focus();
+        return;
+    }
+
+    displayName.textContent = currentName;
+    secretMessage.textContent =
+        currentName + ' جان، تو لایق قشنگ‌ترین اتفاق‌های دنیایی! تولدت هزار بار مبارک! ❤️';
+
+    birthday.style.display = 'block';
+    secret.style.display = 'none';
+    surpriseBtn.textContent = '🎁 سورپرایز منو باز کن!';
+
+    launchConfetti(35);
+
+    birthday.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+    });
+});
+
+surpriseBtn.addEventListener('click', function() {
+    secret.style.display = 'block';
+    surpriseBtn.textContent = '💖 سورپرایز باز شد!';
+
+    launchConfetti(140);
+
+    secret.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+    });
+});
+
+document.getElementById('againBtn').addEventListener('click', function() {
+    launchConfetti(100);
+});
+
+function launchConfetti(count) {
+    const emojis = ['🎉', '🎊', '💖', '⭐', '🎁', '✨', '🎈'];
+
+    for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+
+        item.className = 'confetti';
+        item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.fontSize = (16 + Math.random() * 22) + 'px';
+        item.style.animationDuration = (2 + Math.random() * 3) + 's';
+        item.style.animationDelay = Math.random() * 1.5 + 's';
+
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 6500);
+    }
+}
+</script>
+
+</body>
+</html>
